@@ -2,9 +2,7 @@ package com.example.backend.controller;
 import com.example.backend.model.Song;
 import com.example.backend.service.SongService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,5 +16,12 @@ public class SongController {
     @GetMapping
     public List<Song> getAllSongs(){
         return service.getAllSongs();
+    }
+
+    @PostMapping
+    public Song addNewSong(@RequestBody Song newSong) {
+
+        return service.addNewSong(newSong);
+
     }
 }

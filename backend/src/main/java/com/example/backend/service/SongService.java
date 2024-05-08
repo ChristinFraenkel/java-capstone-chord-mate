@@ -15,4 +15,16 @@ public class SongService {
     public List<Song> getAllSongs(){
         return repo.findAll();
     }
+
+    public Song addNewSong(Song newSong) {
+        Song song = new Song(
+                newSong.getId(),
+                newSong.getArtist(),
+                newSong.getTitle(),
+                newSong.getText()
+                );
+
+        repo.save(song);
+        return song;
+    }
 }
