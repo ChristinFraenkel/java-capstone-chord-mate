@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/song")
+@RequestMapping("/api/song")
 @RequiredArgsConstructor
 public class SongController {
 
