@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Song {
     private final String id;
-    private final String title;
     private final String artist;
+    private final String title;
     private final String text;
 }
