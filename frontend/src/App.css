@@ -2,13 +2,34 @@
   margin: 0;
   padding: 0;
 }
-
 body{
   background: #D3E4F4;
 }
-
 h1{
   font-family: Verdana, sans-serif;
   text-align: center;
   color: #1a2d40;
+}
+h2{
+  font-family: Verdana, sans-serif;
+}
+.song-card{
+  padding: 20px;
+  font-family: 'Courier New', monospace;
+}
+.output-box{
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.output-content{
+  border: 2px solid #1a2d40;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 15px;
+  max-width: 240px;
+}
+.artist-paragraph{
+  text-decoration: underline;
+  margin: 5px 0 15px;
 }
