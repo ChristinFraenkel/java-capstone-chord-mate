@@ -18,6 +18,9 @@ export default function Startpage({songList, newSong, setNewSong}: { songList: S
     function handleOnChange(event: ChangeEvent<HTMLInputElement>) {
         const key = event.target.name
         setNewSong({...newSong, [key]: event.target.value})
+    }function handleOnTextareaChange(event: ChangeEvent<HTMLTextAreaElement>) {
+        const key = event.target.name
+        setNewSong({...newSong, [key]: event.target.value})
     }
 
     return (
@@ -34,7 +37,7 @@ export default function Startpage({songList, newSong, setNewSong}: { songList: S
                         <label htmlFor="title">title:</label>
                         <input type="text" name="title" id="title" onChange={handleOnChange} value={newSong.title}/>
                         <label htmlFor="text">text:</label>
-                        <textarea type="text" name="text" id="text" onChange={handleOnChange}
+                        <textarea name="text" id="text" onChange={handleOnTextareaChange}
                                value={newSong.text}/>
                         <button type={"submit"}>Submit</button>
                     </form>
