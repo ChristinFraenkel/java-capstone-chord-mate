@@ -22,7 +22,7 @@ function App() {
 
     useEffect(() => {
         fetchSongs();
-    }, [newSong])
+    }, [songList])
 
     useEffect(() => {
         fetchSongs();
