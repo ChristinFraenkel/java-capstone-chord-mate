@@ -1,14 +1,10 @@
 import {Song} from "../model/Song.ts";
 import axios from "axios";
-import {ChangeEvent, FormEvent, useState} from "react";
+import {ChangeEvent, FormEvent} from "react";
 
-export default function Startpage({songList}: {songList: Song[]}){
+export default function Startpage({songList, newSong, setNewSong}: { songList: Song[], newSong: Song, setNewSong: (song: Song) => void }){
 
-    const[newSong, setNewSong] = useState<Song>({
-        artist : "",
-        title : "",
-        text : ""
-    });
+
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>)=>{
         event.preventDefault()
