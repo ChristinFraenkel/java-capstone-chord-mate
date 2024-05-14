@@ -29,17 +29,14 @@ export default function Startpage({songList, newSong, setNewSong}: { songList: S
         <div className="song-card">
             <div className="input-box">
                 <h2>Song hinzufügen</h2>
-                <div>
+                <div className={"form-box"}>
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor="artist">artist:</label>
-                        <input type="text" name="artist" id="artist" onChange={handleOnChange}
+                        <input type="text" name="title" id="title" placeholder={"Titel"} onChange={handleOnChange} value={newSong.title}/>
+                        <input type="text" name="artist" id="artist" placeholder={"Künstler"} onChange={handleOnChange}
                                value={newSong.artist}/>
-                        <label htmlFor="title">title:</label>
-                        <input type="text" name="title" id="title" onChange={handleOnChange} value={newSong.title}/>
-                        <label htmlFor="text">text:</label>
-                        <textarea name="text" id="text" onChange={handleOnTextareaChange}
+                        <textarea name="text" id="text" placeholder={"Songtext"} rows={10} cols={50} onChange={handleOnTextareaChange}
                                value={newSong.text}/>
-                        <button type={"submit"}>Submit</button>
+                        <button type={"submit"}>hinzufügen</button>
                     </form>
                 </div>
             </div>
