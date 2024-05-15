@@ -59,6 +59,7 @@ form button{
 
 form textarea{
   padding-top: 5px;
+  white-space: pre-wrap;
 }
 
 form button{
