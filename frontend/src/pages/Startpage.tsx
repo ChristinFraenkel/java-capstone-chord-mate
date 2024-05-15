@@ -47,7 +47,6 @@ export default function Startpage({songList, newSong, setNewSong}: { songList: S
                     <div className={"output-content"} key={index}>
                         <h3>{song.title}</h3>
                         <p className={"artist-paragraph"}>{song.artist}</p>
-                        {/*<p>{song.text}</p>*/}
                         {song.text.split('\n').map((line, i) => (
                             <p key={i}>{line.replace(/ /g, '\u00A0')}</p>
                         ))}

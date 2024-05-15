@@ -28,7 +28,6 @@ h2{
   border-radius: 15px;
   padding: 10px;
   margin: 15px;
-  max-width: 240px;
 }
 .artist-paragraph{
   text-decoration: underline;
@@ -60,6 +59,23 @@ form button{
 form textarea{
   padding-top: 5px;
   white-space: pre-wrap;
+}
+
+form input::placeholder,
+form textarea::placeholder{
+  color: #565656;
+}
+
+form input:focus-visible,
+form textarea:focus-visible{
+  outline: none;
+  background: #084276;
+  color: #fff;
+}
+form input:focus-visible::placeholder,
+form textarea:focus-visible::placeholder{
+  color: #fff;
+  font-weight: bold;
 }
 
 form button{
