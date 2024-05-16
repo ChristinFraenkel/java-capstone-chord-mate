@@ -1,10 +1,9 @@
 import {Song} from "../model/Song.ts";
 import axios from "axios";
-import {ChangeEvent, FormEvent} from "react";
+import {ChangeEvent, FormEvent, useState} from "react";
+import {Link} from "react-router-dom";
 
 export default function Startpage({songList, newSong, setNewSong}: { songList: Song[], newSong: Song, setNewSong: (song: Song) => void }){
-
-
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>)=>{
         event.preventDefault()
@@ -12,15 +11,17 @@ export default function Startpage({songList, newSong, setNewSong}: { songList: S
         axios.post("/api/song", newSong)
             .then((response) => {console.log(response)})
             .catch((error) => {console.log(error.message)})
-        setNewSong({artist : "", title : "", text : ""})
+        setNewSong({id: "", artist : "", title : "", text : ""})
     }
 
-
+    const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
     function handleOnChange(event: ChangeEvent<HTMLInputElement>) {
         const key = event.target.name
         setNewSong({...newSong, [key]: event.target.value})
-    }function handleOnTextareaChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    }
+
+    function handleOnTextareaChange(event: ChangeEvent<HTMLTextAreaElement>) {
         const key = event.target.name
         setNewSong({...newSong, [key]: event.target.value})
     }
@@ -43,13 +44,21 @@ export default function Startpage({songList, newSong, setNewSong}: { songList: S
                 </div>
             </div>
             <div className={"output-box"}>
-                {songList.map((song: Song, index) => (
-                    <div className={"output-content"} key={index}>
+                {songList.map((song: Song) => (
+                    <div className={"output-content"} key={song.id}>
                         <h3>{song.title}</h3>
                         <p className={"artist-paragraph"}>{song.artist}</p>
                         {song.text.split('\n').map((line, i) => (
                             <p key={i}>{line.replace(/ /g, '\u00A0')}</p>
                         ))}
+                        <p>
+                            {isExpanded
+                                ? song.text
+                                : `${song.text.substring(0, 20)}...`}{' '}
+                            <Link to={`/detail/${song.id}`}>
+                                {isExpanded ? ' Weniger anzeigen' : ' Mehr anzeigen'}
+                            </Link>
+                        </p>
                     </div>
                 ))}
             </div>
