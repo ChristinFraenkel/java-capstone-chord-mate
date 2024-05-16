@@ -7,6 +7,12 @@ import axios from "axios";
 function App() {
     const[songList, setSongList] = useState<Song[]>([]);
 
+    const[newSong, setNewSong] = useState<Song>({
+        artist : "",
+        title : "",
+        text : ""
+    });
+
     function fetchSongs(){
         axios.get('/api/song')
             .then((response) => {
@@ -16,11 +22,16 @@ function App() {
 
     useEffect(() => {
         fetchSongs();
+    }, [songList])
+
+    useEffect(() => {
+        fetchSongs();
     }, [])
+
 
   return (
     <>
-      <Startpage songList={songList} />
+      <Startpage songList={songList} newSong={newSong} setNewSong={setNewSong} />
     </>
   )
 }

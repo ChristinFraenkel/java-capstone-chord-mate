@@ -8,7 +8,8 @@ body{
 h1{
   font-family: Verdana, sans-serif;
   text-align: center;
-  color: #1a2d40;
+  color: #084276;
+  margin-top: 20px;
 }
 h2{
   font-family: Verdana, sans-serif;
@@ -23,13 +24,65 @@ h2{
   flex-wrap: wrap;
 }
 .output-content{
-  border: 2px solid #1a2d40;
+  border: 2px solid #084276;
   border-radius: 15px;
   padding: 10px;
   margin: 15px;
-  max-width: 240px;
 }
 .artist-paragraph{
   text-decoration: underline;
   margin: 5px 0 15px;
+}
+
+.input-box{
+  margin-left: 30px;
+}
+
+.form-box form{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: 10px;
+  max-width: 550px;
+}
+
+form input,
+form textarea,
+form button{
+  margin-bottom: 10px;
+  border-radius: 15px;
+  min-height: 25px;
+  padding-left: 5px;
+  font-family: 'Courier New', monospace;
+}
+
+form textarea{
+  padding-top: 5px;
+  white-space: pre-wrap;
+}
+
+form input::placeholder,
+form textarea::placeholder{
+  color: #565656;
+}
+
+form input:focus-visible,
+form textarea:focus-visible{
+  outline: none;
+  background: #084276;
+  color: #fff;
+}
+form input:focus-visible::placeholder,
+form textarea:focus-visible::placeholder{
+  color: #fff;
+  font-weight: bold;
+}
+
+form button{
+  width:  100px;
+  margin: auto;
+}
+
+form button:hover{
+  cursor: url(/src/assets/metalhand.cur), pointer;
 }
