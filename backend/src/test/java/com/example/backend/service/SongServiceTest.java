@@ -12,7 +12,8 @@ import static org.mockito.Mockito.*;
 class SongServiceTest {
 
     SongRepository mockrepo = mock(SongRepository.class);
-    SongService songService = new SongService(mockrepo);
+    IdService mockIdService = mock(IdService.class);
+    SongService songService = new SongService(mockrepo, mockIdService);
 
     @Test
     void getAllSongs_shouldReturn_ListWithElementSong_whenCalled(){
