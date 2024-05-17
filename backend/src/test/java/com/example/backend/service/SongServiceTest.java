@@ -12,7 +12,8 @@ import static org.mockito.Mockito.*;
 class SongServiceTest {
 
     SongRepository mockrepo = mock(SongRepository.class);
-    SongService songService = new SongService(mockrepo);
+    IdService mockIdService = mock(IdService.class);
+    SongService songService = new SongService(mockrepo, mockIdService);
 
     @Test
     void getAllSongs_shouldReturn_ListWithElementSong_whenCalled(){
@@ -33,14 +34,16 @@ class SongServiceTest {
     @Test
     void getAllSongs_shouldReturn_enterSandman_whenCalled(){
         //GIVEN
-        Song newSong = new Song("1", "Metallica", "Enter Sandman", "Exit Light....");
+        Song newSong = new Song("Test-Id", "Metallica", "Enter Sandman", "Exit Light....");
 
+        when(mockIdService.randomId()).thenReturn("Test-Id");
         when(mockrepo.save(newSong)).thenReturn(newSong);
 
         //WHEN
         Song actual = songService.addNewSong(newSong);
 
         //THEN
+        verify(mockIdService).randomId();
         verify(mockrepo).save(newSong);
         assertEquals(actual, newSong);
     }

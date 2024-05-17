@@ -53,7 +53,6 @@ class SongIntegrationTest {
                 .content(
                         """
                              {
-                              "id": "1",
                               "artist": "Metallica",
                               "title": "Enter Sandman",
                               "text": "Exit Light..."
@@ -64,7 +63,6 @@ class SongIntegrationTest {
                 .andExpect(MockMvcResultMatchers.content().json(
                         """
                              {
-                              "id": "1",
                               "artist": "Metallica",
                               "title": "Enter Sandman",
                               "text": "Exit Light..."
