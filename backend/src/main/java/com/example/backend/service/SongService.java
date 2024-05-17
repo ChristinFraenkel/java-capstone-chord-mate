@@ -11,14 +11,16 @@ import java.util.List;
 public class SongService {
 
     private final SongRepository repo;
+    private final IdService idService;
 
     public List<Song> getAllSongs(){
         return repo.findAll();
     }
 
     public Song addNewSong(Song newSong) {
+        String newId = idService.randomId();
         Song song = new Song(
-                newSong.getId(),
+                newId,
                 newSong.getArtist(),
                 newSong.getTitle(),
                 newSong.getText()
