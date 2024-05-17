@@ -24,5 +24,8 @@ public class SongController {
         return service.addNewSong(newSong);
     }
 
-
+    @GetMapping("{id}")
+    Song getTodoById(@PathVariable String id) {
+        return service.getById(id);
+    }
 }

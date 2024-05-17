@@ -4,25 +4,24 @@ import axios from 'axios';
 import { Song } from '../model/Song.ts';
 
 export default function DetailPage() {
-    const { id } = useParams(); // Die ID aus der URL abrufen
-    const [song, setSong] = useState<Song | null>(null); // Zustand für den geladenen Song
+    const { id } = useParams();
+    const [song, setSong] = useState<Song | null>(null);
 
     useEffect(() => {
-        // Daten für den Song mit der entsprechenden ID abrufen
         axios.get(`/api/song/${id}`)
             .then(response => {
-                setSong(response.data); // Setze den geladenen Song im Zustand
+                setSong(response.data);
             })
             .catch(error => {
                 console.error('Fehler beim Laden des Songs:', error);
             });
-    }, []); // Diese Effektfunktion wird immer dann neu ausgeführt, wenn sich die ID ändert
+    }, []);
 
-    // Wenn der Song noch nicht geladen wurde, zeige eine Ladeanzeige an
+    // Loading
     if (!song) {
-        return <p>Kein Song gefunden</p>;
+        return <p>Ups, da ist wohl etwas schief gelaufen.</p>;
     }
-    console.log(song)
+
     return (
         <div className="song-content">
             <h2>{song.title}</h2>

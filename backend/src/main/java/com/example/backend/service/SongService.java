@@ -27,4 +27,8 @@ public class SongService {
         repo.save(song);
         return song;
     }
+
+    public Song getById(String id) {
+        return repo.getById(id);
+    }
 }

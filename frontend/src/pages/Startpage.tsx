@@ -1,5 +1,6 @@
 import {Song} from "../model/Song.ts";
 import axios from "axios";
+import React from "react";
 import {ChangeEvent, FormEvent, useState} from "react";
 import {Link} from "react-router-dom";
 
@@ -48,17 +49,32 @@ export default function Startpage({songList, newSong, setNewSong}: { songList: S
                     <div className={"output-content"} key={song.id}>
                         <h3>{song.title}</h3>
                         <p className={"artist-paragraph"}>{song.artist}</p>
-                        {song.text.split('\n').map((line, i) => (
-                            <p key={i}>{line.replace(/ /g, '\u00A0')}</p>
-                        ))}
-                        <p>
+                        <div>
                             {isExpanded
-                                ? song.text
-                                : `${song.text.substring(0, 20)}...`}{' '}
-                            <Link to={`/detail/${song.id}`}>
-                                {isExpanded ? ' Weniger anzeigen' : ' Mehr anzeigen'}
-                            </Link>
-                        </p>
+                                ? song.text.split('\n').map((line, index) => (
+                                    <p key={index}>
+                                        {line.split(' ').map((word, index) => (
+                                            <React.Fragment key={index}>
+                                                {word}
+                                                {index !== line.split(' ').length - 1 && '\u00A0'}
+                                            </React.Fragment>
+                                        ))}
+                                    </p>
+                                ))
+                                : song.text.split('\n').slice(0, 10).map((line, index) => (
+                                    <p key={index}>
+                                        {line.split(' ').map((word, index) => (
+                                            <React.Fragment key={index}>
+                                                {word}
+                                                {index !== line.split(' ').length - 1 && '\u00A0'}
+                                            </React.Fragment>
+                                        ))}
+                                    </p>
+                                ))}{' '}
+                        </div>
+                        <Link to={`/detail/${song.id}`} onClick={() => setIsExpanded(true)}>
+                            Mehr anzeigen
+                        </Link>
                     </div>
                 ))}
             </div>
