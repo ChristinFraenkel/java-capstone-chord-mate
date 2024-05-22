@@ -58,11 +58,11 @@ export default function Startpage({songList, newSong, setNewSong}: { songList: S
                                     </p>
                                 ))}{'...'}
                         </div>
-                        <button>
+
                             <Link to={`/detail/${song.id}`} >
-                                Mehr anzeigen
+                                <button>Mehr anzeigen</button>
                             </Link>
-                        </button>
+
                     </div>
                 ))}
             </div>

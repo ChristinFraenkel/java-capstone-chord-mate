@@ -26,14 +26,21 @@ export default function DetailPage() {
     return (
         <div className="song-content">
             <div className="title-btn-box">
-            <h2>{song.title}</h2>
-            <button><a href={"/"} className={"back-btn"}>zurück</a></button>
+                <h2>{song.title}</h2>
+                <a href={"/"} className={"back-btn"}>
+                    <button>zurück
+                    </button>
+                </a>
             </div>
             <p className="artist-paragraph">{song.artist}</p>
             {song.text.split('\n').map((line, index) => (
                 <p key={index}>{line.replace(/ /g, '\u00A0')}</p>
             ))}
-            <button><a href={"/"} className={"back-btn"}>zurück</a></button>
-        </div>
-    );
+            <a href={"/"} className={"back-btn"}>
+                <button>zurück
+                </button>
+            </a>
+</div>
+)
+    ;
 }

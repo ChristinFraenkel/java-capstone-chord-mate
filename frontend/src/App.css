@@ -45,7 +45,7 @@ button{
   padding: 5px;
   margin-top: 15px;
 }
-button a{
+a button{
   color: #000;
   font-family: 'Courier New', monospace;
   text-decoration: none;
@@ -122,4 +122,7 @@ form button{
 }
 .title-btn-box button{
   margin-top: auto;
+}
+.title-btn-box a{
+  margin-left: auto;
 }
