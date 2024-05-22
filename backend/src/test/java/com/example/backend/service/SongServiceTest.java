@@ -5,6 +5,7 @@ import com.example.backend.repository.SongRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -45,6 +46,22 @@ class SongServiceTest {
         //THEN
         verify(mockIdService).randomId();
         verify(mockrepo).save(newSong);
+        assertEquals(actual, newSong);
+    }
+
+    @Test
+    void getSongById_shouldReturn_enterSandman_whenCalled() {
+        // GIVEN
+        String songId = "Test-Id";
+        Song newSong = new Song(songId, "Metallica", "Enter Sandman", "Exit Light....");
+
+        when(mockrepo.getById(songId)).thenReturn(newSong);
+
+        // WHEN
+        Song actual = songService.getById(songId);
+
+        // THEN
+        verify(mockrepo).getById(songId);
         assertEquals(actual, newSong);
     }
 }
