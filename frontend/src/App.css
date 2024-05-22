@@ -34,6 +34,30 @@ h2{
   margin: 5px 0 15px;
 }
 
+button{
+  border-radius: 15px;
+  min-height: 25px;
+  padding-left: 5px;
+  width: 100px;
+  margin: auto;
+  background-color: #e8e8e8;
+
+  padding: 5px;
+  margin-top: 15px;
+}
+button a{
+  color: #000;
+  font-family: 'Courier New', monospace;
+  text-decoration: none;
+  vertical-align: bottom;
+}
+button:hover{
+  cursor: url(/src/assets/metalhand.cur), pointer;
+  background-color: #D0D0D7;
+  color: #000;
+}
+
+/* SONG-INPUT */
 .input-box{
   margin-left: 30px;
 }
@@ -83,6 +107,19 @@ form button{
   margin: auto;
 }
 
-form button:hover{
-  cursor: url(/src/assets/metalhand.cur), pointer;
+/* DETAILPAGE */
+.song-content,
+.song-content h2{
+  font-family: 'Courier New', monospace;
+}
+
+.song-content{
+  padding: 20px;
+}
+
+.title-btn-box{
+  display: flex;
+}
+.title-btn-box button{
+  margin-top: auto;
 }
