@@ -1,8 +1,8 @@
 import {Song} from "../model/Song.ts";
 import axios from "axios";
-import React from "react";
 import {ChangeEvent, FormEvent} from "react";
 import {Link} from "react-router-dom";
+import {formatSongText} from "../utils/utils.tsx";
 
 export default function Startpage({songList, newSong, setNewSong}: { songList: Song[], newSong: Song, setNewSong: (song: Song) => void }){
 
@@ -35,7 +35,7 @@ export default function Startpage({songList, newSong, setNewSong}: { songList: S
                         <input type="text" name="title" id="title" placeholder={"Titel"} onChange={handleOnChange} value={newSong.title}/>
                         <input type="text" name="artist" id="artist" placeholder={"Künstler"} onChange={handleOnChange}
                                value={newSong.artist}/>
-                        <textarea name="text" id="text" placeholder={"Songtext"} rows={10} cols={50} onChange={handleOnTextareaChange}
+                        <textarea name="text" id="text" placeholder={"Songtext: Akkorde bitte mit eckigen Klammern einfügen -> [G]"} rows={10} cols={50} onChange={handleOnTextareaChange}
                                value={newSong.text}/>
                         <button type={"submit"}>hinzufügen</button>
                     </form>
@@ -47,16 +47,7 @@ export default function Startpage({songList, newSong, setNewSong}: { songList: S
                         <h3>{song.title}</h3>
                         <p className={"artist-paragraph"}>{song.artist}</p>
                         <div>
-                            {song.text.split('\n').slice(0, 10).map((line, index) => (
-                                    <p key={index}>
-                                        {line.split(' ').map((word, index) => (
-                                            <React.Fragment key={index}>
-                                                {word}
-                                                {index !== line.split(' ').length - 1 && '\u00A0'}
-                                            </React.Fragment>
-                                        ))}
-                                    </p>
-                                ))}{'...'}
+                            {formatSongText(song.text).slice(0, 10)}{'...'}
                         </div>
 
                             <Link to={`/detail/${song.id}`} >

@@ -124,3 +124,13 @@ form button{
 .title-btn-box a{
   margin-left: auto;
 }
+
+/*CHORDS*/
+
+/* Startpage.css */
+.chord {
+  font-weight: bold;
+  color:  #525eff;
+  background-color: #C1C1C1;
+  padding: 1px 4px;
+}
