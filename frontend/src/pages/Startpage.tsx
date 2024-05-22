@@ -1,21 +1,18 @@
 import {Song} from "../model/Song.ts";
 import axios from "axios";
 import React from "react";
-import {ChangeEvent, FormEvent, useState} from "react";
+import {ChangeEvent, FormEvent} from "react";
 import {Link} from "react-router-dom";
 
 export default function Startpage({songList, newSong, setNewSong}: { songList: Song[], newSong: Song, setNewSong: (song: Song) => void }){
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>)=>{
         event.preventDefault()
-
         axios.post("/api/song", newSong)
             .then((response) => {console.log(response)})
             .catch((error) => {console.log(error.message)})
         setNewSong({id: "", artist : "", title : "", text : ""})
     }
-
-    const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
     function handleOnChange(event: ChangeEvent<HTMLInputElement>) {
         const key = event.target.name
@@ -50,8 +47,7 @@ export default function Startpage({songList, newSong, setNewSong}: { songList: S
                         <h3>{song.title}</h3>
                         <p className={"artist-paragraph"}>{song.artist}</p>
                         <div>
-                            {isExpanded
-                                ? song.text.split('\n').map((line, index) => (
+                            {song.text.split('\n').slice(0, 10).map((line, index) => (
                                     <p key={index}>
                                         {line.split(' ').map((word, index) => (
                                             <React.Fragment key={index}>
@@ -60,21 +56,13 @@ export default function Startpage({songList, newSong, setNewSong}: { songList: S
                                             </React.Fragment>
                                         ))}
                                     </p>
-                                ))
-                                : song.text.split('\n').slice(0, 10).map((line, index) => (
-                                    <p key={index}>
-                                        {line.split(' ').map((word, index) => (
-                                            <React.Fragment key={index}>
-                                                {word}
-                                                {index !== line.split(' ').length - 1 && '\u00A0'}
-                                            </React.Fragment>
-                                        ))}
-                                    </p>
-                                ))}{' '}
+                                ))}{'...'}
                         </div>
-                        <Link to={`/detail/${song.id}`} onClick={() => setIsExpanded(true)}>
-                            Mehr anzeigen
-                        </Link>
+                        <button>
+                            <Link to={`/detail/${song.id}`} >
+                                Mehr anzeigen
+                            </Link>
+                        </button>
                     </div>
                 ))}
             </div>

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Song } from '../model/Song.ts';
 
+
 export default function DetailPage() {
     const { id } = useParams();
     const [song, setSong] = useState<Song | null>(null);
@@ -24,11 +25,15 @@ export default function DetailPage() {
 
     return (
         <div className="song-content">
+            <div className="title-btn-box">
             <h2>{song.title}</h2>
+            <button><a href={"/"} className={"back-btn"}>zurück</a></button>
+            </div>
             <p className="artist-paragraph">{song.artist}</p>
             {song.text.split('\n').map((line, index) => (
                 <p key={index}>{line.replace(/ /g, '\u00A0')}</p>
             ))}
+            <button><a href={"/"} className={"back-btn"}>zurück</a></button>
         </div>
     );
 }

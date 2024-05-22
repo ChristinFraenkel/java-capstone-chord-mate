@@ -25,7 +25,7 @@ public class SongController {
     }
 
     @GetMapping("{id}")
-    Song getTodoById(@PathVariable String id) {
+    Song getSongById(@PathVariable String id) {
         return service.getById(id);
     }
 }
