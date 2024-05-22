@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Song } from '../model/Song.ts';
+import {formatSongText} from "../utils/utils.tsx";
 
 
 export default function DetailPage() {
@@ -33,9 +34,7 @@ export default function DetailPage() {
                 </a>
             </div>
             <p className="artist-paragraph">{song.artist}</p>
-            {song.text.split('\n').map((line, index) => (
-                <p key={index}>{line.replace(/ /g, '\u00A0')}</p>
-            ))}
+            {formatSongText(song.text)}
             <a href={"/"} className={"back-btn"}>
                 <button>zurück
                 </button>
