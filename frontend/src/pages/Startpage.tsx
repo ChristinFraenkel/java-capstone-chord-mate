@@ -1,22 +1,31 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Song } from "../model/Song.ts";
-import { formatSongText, extractChords } from "../utils/utils.tsx";
+import { Song } from "../model/Song";
+import { formatSongText, extractChords } from "../utils/utils";
 
-export default function Startpage({ songList, newSong, setNewSong }: { songList: Song[], newSong: Song, setNewSong: (song: Song) => void }) {
+interface StartpageProps {
+    songList: Song[];
+    newSong: Song;
+    setNewSong: (song: Song) => void;
+    fetchSongs: () => void;
+}
+
+export default function Startpage({ songList, newSong, setNewSong, fetchSongs }: StartpageProps) {
     const [filter, setFilter] = useState<string>("");
     const [chordFilter, setChordFilter] = useState<string[]>([]);
     const [possibleChords, setPossibleChords] = useState<string[]>([]);
     const [filteredSongList, setFilteredSongList] = useState<Song[]>(songList);
 
-
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         axios.post("/api/song", newSong)
-            .then((response) => { console.log(response); })
+            .then((response) => {
+                console.log(response);
+                fetchSongs(); // Update song list after adding new song
+                setNewSong({ id: "", artist: "", title: "", text: "" });
+            })
             .catch((error) => { console.log(error.message); });
-        setNewSong({ id: "", artist: "", title: "", text: "" });
     };
 
     function handleOnChange(event: ChangeEvent<HTMLInputElement>) {
@@ -34,7 +43,6 @@ export default function Startpage({ songList, newSong, setNewSong }: { songList:
         setChordFilter(prev =>
             prev.includes(chord) ? prev.filter(c => c !== chord) : [...prev, chord]
         );
-        // console.log(chordFilter);
     };
 
     useEffect(() => {
@@ -42,28 +50,19 @@ export default function Startpage({ songList, newSong, setNewSong }: { songList:
             return (
                 (song.title.toLowerCase().includes(filter.toLowerCase()) ||
                     song.artist.toLowerCase().includes(filter.toLowerCase()) ||
-                    song.text.toLowerCase().includes(filter.toLowerCase()))
+                    song.text.toLowerCase().includes(filter.toLowerCase())) &&
+                (chordFilter.length === 0 || chordFilter.every(chord => song.text.includes(`[${chord}]`)))
             );
         });
         setFilteredSongList(filtered);
 
-    }, [filter, songList]);
-
-    useEffect(() => {
-        const filteredChords = songList.filter((song) => {
-            const chords = extractChords(song.text);
-            return (
-                (chordFilter.length === 0 || chordFilter.every(chord => chords.includes(chord)))
-            );
-        });
-        setFilteredSongList(filteredChords);
-
+        // Update possible chords based on filtered songs
         const allChords = new Set<string>();
-        filteredChords.forEach(song => {
+        filtered.forEach(song => {
             extractChords(song.text).forEach(chord => allChords.add(chord));
         });
         setPossibleChords(Array.from(allChords));
-    }, [chordFilter]);
+    }, [filter, chordFilter, songList]);
 
     return (
         <>

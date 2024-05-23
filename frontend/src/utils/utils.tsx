@@ -24,7 +24,7 @@ export function extractChords(text: string): string[] {
     let match;
     while ((match = chordRegex.exec(text)) !== null) {
         chords.add(match[1]);
-        console.log('test');
+        console.log("test");
     }
     return Array.from(chords);
 }
