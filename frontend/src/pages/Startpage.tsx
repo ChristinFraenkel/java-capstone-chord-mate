@@ -1,10 +1,12 @@
 import {Song} from "../model/Song.ts";
 import axios from "axios";
-import {ChangeEvent, FormEvent} from "react";
+import {ChangeEvent, FormEvent, useState} from "react";
 import {Link} from "react-router-dom";
 import {formatSongText} from "../utils/utils.tsx";
 
 export default function Startpage({songList, newSong, setNewSong}: { songList: Song[], newSong: Song, setNewSong: (song: Song) => void }){
+
+    const [filter, setFilter] = useState<string>("");
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>)=>{
         event.preventDefault()
@@ -24,6 +26,12 @@ export default function Startpage({songList, newSong, setNewSong}: { songList: S
         setNewSong({...newSong, [key]: event.target.value})
     }
 
+    const filteredSongList = songList.filter((song) =>
+        song.title.toLowerCase().includes(filter.toLowerCase()) ||
+        song.artist.toLowerCase().includes(filter.toLowerCase()) ||
+        song.text.toLowerCase().includes(filter.toLowerCase())
+    );
+
     return (
         <>
         <h1>ChordMate</h1>
@@ -42,7 +50,13 @@ export default function Startpage({songList, newSong, setNewSong}: { songList: S
                 </div>
             </div>
             <div className={"output-box"}>
-                {songList.map((song: Song) => (
+                <input
+                    type="text"
+                    placeholder="Suche nach Titel, Künstler oder Songtext"
+                    value={filter}
+                    onChange={(e) => setFilter(e.target.value)}
+                />
+                {filteredSongList.map((song: Song) => (
                     <div className={"output-content"} key={song.id}>
                         <h3>{song.title}</h3>
                         <p className={"artist-paragraph"}>{song.artist}</p>
