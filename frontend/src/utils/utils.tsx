@@ -17,3 +17,14 @@ export function formatSongText(text: string) {
         </p>
     ));
 }
+
+export function extractChords(text: string): string[] {
+    const chordRegex = /\[([A-G][#bm]*)\]/g;
+    const chords = new Set<string>();
+    let match;
+    while ((match = chordRegex.exec(text)) !== null) {
+        chords.add(match[1]);
+        console.log("test");
+    }
+    return Array.from(chords);
+}
