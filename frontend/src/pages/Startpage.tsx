@@ -103,24 +103,28 @@ export default function Startpage({ songList, newSong, setNewSong, fetchSongs }:
                 </div>
                 <div className={"output-box"}>
                     <div className="filter-box">
+                        <div className="chord-filter">
                         {possibleChords.map(chord => (
+                            <div className={"chord-check-box"}>
                             <label key={chord}>
-                                <input
+                                {chord}
+                            </label>
+                                <input className={"chord-check"}
                                     type="checkbox"
                                     value={chord}
                                     onChange={handleChordFilterChange}
                                     checked={chordFilter.includes(chord)}
                                 />
-                                {chord}
-                            </label>
+                            </div>
                         ))}
-                    </div>
-                    <input
+                        </div>
+                    <input className={"search-input"}
                         type="text"
                         placeholder="Suche nach Titel, Künstler oder Songtext"
                         value={filter}
                         onChange={(e) => setFilter(e.target.value)}
                     />
+                    </div>
                     {filteredSongList.map((song: Song) => (
                         <div className={"output-content"} key={song.id}>
                             <h3>{song.title}</h3>
