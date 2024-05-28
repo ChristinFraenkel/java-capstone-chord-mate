@@ -28,4 +28,9 @@ public class SongController {
     Song getSongById(@PathVariable String id) {
         return service.getById(id);
     }
+
+    @DeleteMapping("{id}")
+    public String deleteSongById(@PathVariable String id) {
+        return service.deleteSongById(id);
+    }
 }

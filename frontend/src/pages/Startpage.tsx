@@ -45,6 +45,17 @@ export default function Startpage({ songList, newSong, setNewSong, fetchSongs }:
         );
     };
 
+    const deleteSong = (id: string) => {
+        axios.delete(`/api/song/${id}`)
+            .then((response) => {
+                console.log(response);
+                fetchSongs(); // Update song list after deleting a song
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    };
+
     useEffect(() => {
         const filtered = songList.filter((song) => {
             return (
@@ -104,29 +115,30 @@ export default function Startpage({ songList, newSong, setNewSong, fetchSongs }:
                 <div className={"output-box"}>
                     <div className="filter-box">
                         <div className="chord-filter">
-                        {possibleChords.map(chord => (
-                            <div className={"chord-check-box"}>
-                            <label key={chord}>
-                                {chord}
-                            </label>
-                                <input className={"chord-check"}
-                                    type="checkbox"
-                                    value={chord}
-                                    onChange={handleChordFilterChange}
-                                    checked={chordFilter.includes(chord)}
-                                />
-                            </div>
-                        ))}
+                            {possibleChords.map(chord => (
+                                <div className={"chord-check-box"} key={chord}>
+                                    <label>
+                                        {chord}
+                                    </label>
+                                    <input className={"chord-check"}
+                                           type="checkbox"
+                                           value={chord}
+                                           onChange={handleChordFilterChange}
+                                           checked={chordFilter.includes(chord)}
+                                    />
+                                </div>
+                            ))}
                         </div>
-                    <input className={"search-input"}
-                        type="text"
-                        placeholder="Suche nach Titel, Künstler oder Songtext"
-                        value={filter}
-                        onChange={(e) => setFilter(e.target.value)}
-                    />
+                        <input className={"search-input"}
+                               type="text"
+                               placeholder="Suche nach Titel, Künstler oder Songtext"
+                               value={filter}
+                               onChange={(e) => setFilter(e.target.value)}
+                        />
                     </div>
                     {filteredSongList.map((song: Song) => (
                         <div className={"output-content"} key={song.id}>
+                            <div className={"garbageIcon"}><button onClick={() => deleteSong(song.id)}>❌</button></div>
                             <h3>{song.title}</h3>
                             <p className={"artist-paragraph"}>{song.artist}</p>
                             <div>

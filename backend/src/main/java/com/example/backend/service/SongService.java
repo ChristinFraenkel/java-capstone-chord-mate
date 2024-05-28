@@ -5,6 +5,7 @@ import com.example.backend.repository.SongRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -32,5 +33,14 @@ public class SongService {
 
     public Song getById(String id) {
         return repo.getById(id);
+    }
+
+    public String deleteSongById(String id) {
+        try{
+            repo.delete(repo.findById(id).orElseThrow());
+            return "Song deleted successfully";
+        }catch(NoSuchElementException e){
+            return "Song not found";
+        }
     }
 }

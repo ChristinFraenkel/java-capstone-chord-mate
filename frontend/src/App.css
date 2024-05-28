@@ -28,6 +28,7 @@ h2{
   border-radius: 15px;
   padding: 10px;
   margin: 15px;
+  position: relative;
 }
 .artist-paragraph{
   text-decoration: underline;
@@ -169,6 +170,10 @@ input[type=checkbox]:checked::before {
   display: flex;
 }
 
+.chord-filter .chord-check-box .chord-check:hover{
+  cursor: url(/src/assets/metalhand.cur), pointer;
+}
+
 /*SEARCH INPUT*/
 
 .search-input{
@@ -186,4 +191,27 @@ input[type=checkbox]:checked::before {
 .search-input:focus-visible::placeholder{
   color: #fff;
   font-weight: bold;
+}
+
+.garbageIcon {
+  position: absolute;
+  right: 10px;
+
+}
+
+.garbageIcon:hover {
+  cursor: url(/src/assets/metalhand.cur), pointer;
+}
+
+.garbageIcon button{
+  border: unset;
+  min-height: unset;
+  width: unset;
+  margin: unset;
+  padding: unset;
+  background-color: unset;
+}
+
+.garbageIcon button:hover{
+  background-color: unset;
 }
