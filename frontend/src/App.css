@@ -202,3 +202,16 @@ input[type=checkbox]:checked::before {
 .garbageIcon:hover {
   cursor: url(/src/assets/metalhand.cur), pointer;
 }
+
+.garbageIcon button{
+  border: unset;
+  min-height: unset;
+  width: unset;
+  margin: unset;
+  padding: unset;
+  background-color: unset;
+}
+
+.garbageIcon button:hover{
+  background-color: unset;
+}
