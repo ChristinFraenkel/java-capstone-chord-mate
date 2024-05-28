@@ -138,7 +138,7 @@ export default function Startpage({ songList, newSong, setNewSong, fetchSongs }:
                     </div>
                     {filteredSongList.map((song: Song) => (
                         <div className={"output-content"} key={song.id}>
-                            <div className={"garbageIcon"} onClick={() => deleteSong(song.id)}>❌</div>
+                            <div className={"garbageIcon"}><button onClick={() => deleteSong(song.id)}>❌</button></div>
                             <h3>{song.title}</h3>
                             <p className={"artist-paragraph"}>{song.artist}</p>
                             <div>
