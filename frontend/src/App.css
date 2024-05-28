@@ -169,6 +169,10 @@ input[type=checkbox]:checked::before {
   display: flex;
 }
 
+.chord-filter .chord-check-box .chord-check:hover{
+  cursor: url(/src/assets/metalhand.cur), pointer;
+}
+
 /*SEARCH INPUT*/
 
 .search-input{
