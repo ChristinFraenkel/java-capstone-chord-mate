@@ -28,6 +28,7 @@ h2{
   border-radius: 15px;
   padding: 10px;
   margin: 15px;
+  position: relative;
 }
 .artist-paragraph{
   text-decoration: underline;
@@ -190,4 +191,14 @@ input[type=checkbox]:checked::before {
 .search-input:focus-visible::placeholder{
   color: #fff;
   font-weight: bold;
+}
+
+.garbageIcon {
+  position: absolute;
+  right: 10px;
+
+}
+
+.garbageIcon:hover {
+  cursor: url(/src/assets/metalhand.cur), pointer;
 }
