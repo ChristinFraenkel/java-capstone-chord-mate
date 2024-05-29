@@ -43,4 +43,15 @@ public class SongService {
             return "Song not found";
         }
     }
+
+    public Song updateSong(Song song, String id){
+        Song songToUpdate = new Song(
+                id,
+                song.getArtist(),
+                song.getTitle(),
+                song.getText()
+        );
+        repo.save(songToUpdate);
+        return song;
+    }
 }
