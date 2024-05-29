@@ -23,6 +23,7 @@ export default function Startpage({ songList, newSong, setNewSong, fetchSongs }:
             .then((response) => {
                 console.log(response);
                 fetchSongs(); // Update song list after adding new song
+                // Update newSong with the response data
                 setNewSong({ id: "", artist: "", title: "", text: "" });
             })
             .catch((error) => { console.log(error.message); });
@@ -64,7 +65,7 @@ export default function Startpage({ songList, newSong, setNewSong, fetchSongs }:
                     song.text.toLowerCase().includes(filter.toLowerCase())) &&
                 (chordFilter.length === 0 || chordFilter.every(chord => song.text.includes(`[${chord}]`)))
             );
-        });
+        }).filter(song => song.id); // Filter songs with valid IDs
         setFilteredSongList(filtered);
 
         // Update possible chords based on filtered songs
