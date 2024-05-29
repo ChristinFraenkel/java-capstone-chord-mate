@@ -34,7 +34,7 @@ function App() {
         <>
             <Routes>
                 <Route path="/" element={<Startpage songList={songList} newSong={newSong} setNewSong={setNewSong} fetchSongs={fetchSongs} />} />
-                <Route path="/detail/:id" element={<DetailPage />} />
+                <Route path="/detail/:id" element={<DetailPage/>} />
             </Routes>
         </>
     );
