@@ -39,10 +39,9 @@ button{
   border-radius: 15px;
   min-height: 25px;
   width: 100px;
-  margin: auto;
   background-color: #e8e8e8;
   padding: 5px;
-  margin-top: 15px;
+  margin: 15px auto auto;
 }
 a button{
   color: #000;
@@ -69,34 +68,35 @@ button:hover{
   max-width: 550px;
 }
 
-form input,
-form textarea,
+input,
+textarea,
 form button{
   margin-bottom: 10px;
   border-radius: 15px;
   min-height: 25px;
-  padding-left: 5px;
   font-family: 'Courier New', monospace;
+  font-size: 14px;
+  padding: 10px;
 }
 
-form textarea{
+textarea{
   padding-top: 5px;
   white-space: pre-wrap;
 }
 
-form input::placeholder,
-form textarea::placeholder{
+input::placeholder,
+textarea::placeholder{
   color: #565656;
 }
 
-form input:focus-visible,
-form textarea:focus-visible{
+input:focus-visible,
+textarea:focus-visible{
   outline: none;
   background: #084276;
   color: #fff;
 }
-form input:focus-visible::placeholder,
-form textarea:focus-visible::placeholder{
+input:focus-visible::placeholder,
+textarea:focus-visible::placeholder{
   color: #fff;
   font-weight: bold;
 }
@@ -123,14 +123,15 @@ form button{
   margin-top: auto;
 }
 .title-btn-box a{
-  margin-left: auto;
+  position: absolute;
+  right: 20px
 }
 
 /*CHORDS*/
 .chord {
   font-weight: bold;
-  color:  #525eff;
-  background-color: #C1C1C1;
+  color:  #0C72BA;
+  background-color: #CCCCCC;
   padding: 1px 4px;
 }
 
@@ -143,12 +144,12 @@ form button{
 input[type=checkbox] {
   appearance: none;
   background-color: #fff;
-  margin: 0;
   width: 27px;
   height: 27px;
   border: 2px solid #084276;
   border-radius: 2px;
-  margin-right: 10px;
+  margin: 0 10px 0 0;
+  padding: 0;
 }
 
 input[type=checkbox]:checked::before {
@@ -214,4 +215,19 @@ input[type=checkbox]:checked::before {
 
 .garbageIcon button:hover{
   background-color: unset;
+}
+
+.edit-btn{
+  position: absolute;
+  right: 20px;
+  top: 45px;
+}
+
+.edit-input-box{
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-input-box button{
+  margin-left: 0;
 }
