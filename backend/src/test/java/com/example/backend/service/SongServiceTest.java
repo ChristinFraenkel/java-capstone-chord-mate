@@ -64,4 +64,55 @@ class SongServiceTest {
         verify(mockrepo).getById(songId);
         assertEquals(actual, newSong);
     }
+
+    @Test
+    void deleteSongById_shouldReturn_successMessage_whenSongExists() {
+        // GIVEN
+        String songId = "Test-Id";
+        Song existingSong = new Song(songId, "Metallica", "Enter Sandman", "Exit Light....");
+
+        when(mockrepo.findById(songId)).thenReturn(Optional.of(existingSong));
+        doNothing().when(mockrepo).delete(existingSong);
+
+        // WHEN
+        String actualMessage = songService.deleteSongById(songId);
+
+        // THEN
+        verify(mockrepo).findById(songId);
+        verify(mockrepo).delete(existingSong);
+        assertEquals(actualMessage, "Song deleted successfully");
+    }
+
+    @Test
+    void deleteSongById_shouldReturn_notFoundMessage_whenSongDoesNotExist() {
+        // GIVEN
+        String songId = "Test-Id";
+
+        when(mockrepo.findById(songId)).thenReturn(Optional.empty());
+
+        // WHEN
+        String actualMessage = songService.deleteSongById(songId);
+
+        // THEN
+        verify(mockrepo).findById(songId);
+        verify(mockrepo, never()).delete(any(Song.class));
+        assertEquals(actualMessage, "Song not found");
+    }
+
+    @Test
+    void putSong_shouldReturn_updatedSong_whenCalled() {
+        // GIVEN
+        String songId = "Test-Id";
+        Song updatedSong = new Song(songId, "Metallica", "Enter Sandman", "Exit Light....");
+
+        when(mockrepo.save(updatedSong)).thenReturn(updatedSong);
+
+        // WHEN
+        Song actualSong = songService.updateSong(updatedSong, songId);
+
+        // THEN
+        verify(mockrepo).save(updatedSong);
+        assertEquals(actualSong, updatedSong);
+    }
+
 }
